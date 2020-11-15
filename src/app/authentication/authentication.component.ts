@@ -36,6 +36,7 @@ export class AuthenticationComponent implements OnInit {
     }
     this.service.joinRoom(f.value.username, f.value.room);
     localStorage.setItem('user', JSON.stringify(f.value));
+    this.service.isUserInserted = true;
     this.route.navigateByUrl('/chat-room');
     console.log("f", f.value);
   }

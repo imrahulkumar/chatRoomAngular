@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 })
 export class ServiceService {
 
+  isUserInserted: boolean;
+
   constructor(private socket: Socket) { }
 
   formatMessage(username, text) {
@@ -35,10 +37,10 @@ export class ServiceService {
     this.socket.emit('chatMessage', message);
   }
 
-  getMessage(){
+  getMessage() {
     return this.socket
-    .fromEvent("message")
-    .pipe(map((data) => data));
+      .fromEvent("message")
+      .pipe(map((data) => data));
   }
 
 }

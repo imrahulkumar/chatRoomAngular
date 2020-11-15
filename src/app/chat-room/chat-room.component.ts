@@ -20,12 +20,16 @@ export class ChatRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let currentUser = JSON.parse(localStorage.getItem('user'));
-    this.service.joinRoom(currentUser.username,currentUser.room )
+    if (!this.service.isUserInserted) {
+      let currentUser = JSON.parse(localStorage.getItem('user'));
+      this.service.joinRoom(currentUser.username, currentUser.room)
+    }
+
   }
 
   getRoomNameAndUser() {
     this.service.getRoomNameAndUser().subscribe((res: any) => {
+      console.log("room and user", res);
       if (res && res.room) {
         this.roomName = res.room;
       }
