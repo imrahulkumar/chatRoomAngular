@@ -13,20 +13,21 @@
         </ul>
       </div>
       <div class="chat-messages">
-					<div class="message">
-						<p class="meta">Brad <span>9:12pm</span></p>
+					<div class="message" *ngFor="let d of chatMsg">
+						<p class="meta">{{d.username}} <span>{{d.time}}</span></p>
 						<p class="text">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-							repudiandae.
+						 {{d.text}}
 						</p>
-					</div>
-					<div class="message">
+          </div>
+          
+
+					<!-- <div class="message">
 						<p class="meta">Mary <span>9:15pm</span></p>
 						<p class="text">
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
 							repudiandae.
 						</p>
-					</div>
+					</div> -->
       </div>
     </main>
     <div class="chat-form-container">
@@ -37,8 +38,10 @@
           placeholder="Enter Message"
           required
           autocomplete="off"
+          [(ngModel)]="message"
+          [ngModelOptions]="{standalone: true}"
         />
-        <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        <button class="btn" (click)="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
       </form>
     </div>
   </div>

@@ -10,12 +10,18 @@ export class ChatRoomComponent implements OnInit {
 
   roomName: string = "";
   userList: any[] = [];
+  message: string = "";
+
+  chatMsg: any[] = [];
 
   constructor(private service: ServiceService) {
     this.getRoomNameAndUser();
+    this.getMessage();
   }
 
   ngOnInit(): void {
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+    this.service.joinRoom(currentUser.username,currentUser.room )
   }
 
   getRoomNameAndUser() {
@@ -26,6 +32,20 @@ export class ChatRoomComponent implements OnInit {
       if (res && res.users && Array.isArray(res.users)) {
         this.userList = res.users;
       }
+    })
+  }
+
+
+  sendMessage() {
+    if (this.message.trim())
+      this.service.sendMessage(this.message.trim());
+    this.message = "";
+  }
+
+  getMessage() {
+    this.service.getMessage().subscribe((res: any) => {
+      console.log("get msg ::", res);
+      this.chatMsg.push(res)
     })
   }
 

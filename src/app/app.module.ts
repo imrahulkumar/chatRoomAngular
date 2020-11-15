@@ -15,8 +15,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ChatRoomComponent
   ],
   imports: [
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule, 
     BrowserModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config)
